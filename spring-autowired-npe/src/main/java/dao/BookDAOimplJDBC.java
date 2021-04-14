@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import models.Book;
@@ -20,7 +19,7 @@ public class BookDAOimplJDBC implements BookDAOi {
 	Connection conn = null;
 	PreparedStatement preparedStatement = null;
 	private ResultSet resultSet = null;
-	List<Book> booksCollection;
+	List<Book> booksCollection = new ArrayList<>();
 
 	public BookDAOimplJDBC() throws SQLException {
 		super();
@@ -65,8 +64,6 @@ public class BookDAOimplJDBC implements BookDAOi {
 		// preparedStmt.setString(2, "Rubble");
 		preparedStmt.execute();
 
-		conn.close();
-
 		// Error handling removed for brevity
 	}
 
@@ -88,7 +85,7 @@ public class BookDAOimplJDBC implements BookDAOi {
 			System.out.println("summary: " + auteur);
 			// System.out.println("Date: " + date);
 			Book book = new Book(id, titre, auteur);
-
+			this.booksCollection.add(book);
 		}
 	}
 
@@ -98,13 +95,19 @@ public class BookDAOimplJDBC implements BookDAOi {
 	 * @throws SQLException https://www.vogella.com/tutorials/MySQLJava/article.html
 	 */
 	public List<Book> list() throws SQLException {
-		List<Book> booksCollection = new ArrayList<>();
 
 		/** Resultset delete https://www.vogella.com/tutorials/MySQLJava/article.html */
-		preparedStatement = conn.prepareStatement("SELECT id, titre, autheur from npe.Book");
+		preparedStatement = conn.prepareStatement("SELECT id, titre, auteur from npe.Book");
 		resultSet = preparedStatement.executeQuery();
 		writeResultSetBOOK(resultSet);
-		return this.booksCollection;
+		System.out.println("lbl25 size=" + this.booksCollection);
+		return this.booksCollection;/** heritee de writeResultSetBOOK */
+	}
+
+	protected void finalize() throws SQLException {
+		/** around Class or fx */
+		conn.close();
+		System.out.println("lbl29 destructor");
 	}
 
 }
