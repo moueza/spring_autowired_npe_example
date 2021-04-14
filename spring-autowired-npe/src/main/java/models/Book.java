@@ -16,7 +16,7 @@ public class Book implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private Long id;
+	private Integer id;
 	private String titre;
 	private String auteur;
 
@@ -26,17 +26,24 @@ public class Book implements Serializable {
 		auteur = auteurr;
 	}
 
-	// standard getters and setters
-	public Long getId() {
-		return id;
+	public Book(Integer idd, String titree, String auteurr) {
+		titre = titree;
+		auteur = auteurr;
+		id = idd;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	// standard getters and setters
 
 	public String getTitre() {
 		return titre;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public void setTitre(String titre) {
