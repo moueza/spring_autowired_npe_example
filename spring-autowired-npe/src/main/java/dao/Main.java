@@ -11,7 +11,7 @@ public class Main {
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		BookDAOimplJDBC bookDAOimpljdbc = new BookDAOimplJDBC();
 		bookDAOimpljdbc.scratchAdd3books();
-a
+
 		Optional<List<Book>> listOptional = Optional.ofNullable(bookDAOimpljdbc.list());
 
 		/** isEmpty java 11 */
@@ -26,7 +26,7 @@ a
 		// listOptional.ifPresent(l -> System.out.println());
 		/*********** !!!!ifPresent != isPresent **********/
 		if (listOptional.isPresent()) {
-			System.out.println("lbl1 exists, size=" + listOptional.get().size());
+			System.out.println("lbl1 exists" + listOptional.get().size());
 		} else {
 			System.out.println("lbl2 null");
 		}
