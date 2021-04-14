@@ -11,7 +11,7 @@ public class Main {
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		BookDAOimplJDBC bookDAOimpljdbc = new BookDAOimplJDBC();
 		bookDAOimpljdbc.scratchAdd3books();
-
+a
 		Optional<List<Book>> listOptional = Optional.ofNullable(bookDAOimpljdbc.list());
 
 		/** isEmpty java 11 */
